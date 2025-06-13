@@ -107,13 +107,15 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="mb-20">
       <Navbar />
       <Search onSearch={handleSearch} />
       <div className="mx-3 lg:mx-[100px] gap-10 flex flex-col lg:flex-row mt-10">
         <Sidebar onFilterChange={handleFilterChange} />
         {loading ? (
-          <p>Loading hotels...</p>
+          <p className="flex items-center justify-center w-full">
+            Loading hotels...
+          </p>
         ) : (
           <Cards
             hotels={filteredHotels}
