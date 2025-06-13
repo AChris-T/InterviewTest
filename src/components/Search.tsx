@@ -75,10 +75,14 @@ export default function Search({ onSearch }: SearchProps) {
           id="date-range"
           label="Select a date range"
           variant="outlined"
-          value={`${format(dateRange.startDate, 'MM/dd/yyyy')} - ${format(
-            dateRange.endDate,
-            'MM/dd/yyyy'
-          )}`}
+          value={
+            dateRange.startDate && dateRange.endDate
+              ? `${format(dateRange.startDate, 'MM/dd/yyyy')} - ${format(
+                  dateRange.endDate,
+                  'MM/dd/yyyy'
+                )}`
+              : ''
+          }
           onClick={(e) => {
             const dateRangeElement =
               document.getElementById('date-range-picker');
