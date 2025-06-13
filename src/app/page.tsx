@@ -57,9 +57,7 @@ export default function Home() {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const res = await fetch(
-          'https://sandbox.thetravelhunters.com/hotel/hotels/'
-        );
+        const res = await fetch('api/hotels');
         const data = await res.json();
         console.log('First Hotel:', data.results[0]);
         setHotels(data.results || []);
@@ -85,9 +83,7 @@ export default function Home() {
   const handleFilterChange = (newFilters: Filters) => {
     setFilters(newFilters);
 
-    // Apply filters to hotels
     const filtered = hotels.filter((hotel) => {
-      // Filter by property type if any are selected
       const propertyTypeMatch =
         newFilters.propertyTypes.length === 0 ||
         newFilters.propertyTypes.some(
