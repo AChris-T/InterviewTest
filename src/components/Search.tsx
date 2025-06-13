@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { CiLocationOn, CiSearch } from 'react-icons/ci';
-import { DateRange } from 'react-date-range';
+import { DateRange, Range } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
@@ -23,7 +23,7 @@ interface SearchProps {
 export default function Search({ onSearch }: SearchProps) {
   const [location, setLocation] = useState('');
   const today = new Date();
-  const [dateRange, setDateRange] = useState({
+  const [dateRange, setDateRange] = useState<Range>({
     startDate: today,
     endDate: today,
     key: 'selection',
@@ -95,7 +95,11 @@ export default function Search({ onSearch }: SearchProps) {
         >
           <DateRange
             ranges={[dateRange]}
-            onChange={(item) => setDateRange(item.selection)}
+            onChange={(item) => {
+              if (item.selection) {
+                setDateRange(item.selection);
+              }
+            }}
             months={1}
             direction="horizontal"
             showDateDisplay={false}

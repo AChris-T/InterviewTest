@@ -127,12 +127,16 @@ export default function Sidebar({ onFilterChange }: SidebarProps) {
                 {children}
               </div>
             )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                className="w-5 h-5 rounded-full bg-green-600 cursor-pointer"
-              />
-            )}
+            renderThumb={({ props }) => {
+              const { key, ...restProps } = props;
+              return (
+                <div
+                  key={key}
+                  {...restProps}
+                  className="w-5 h-5 rounded-full bg-green-600 cursor-pointer"
+                />
+              );
+            }}
           />
         </div>
 
