@@ -37,14 +37,16 @@ export default function Search({ onSearch }: SearchProps) {
   const handleDone = () => setDropdownOpen(false);
 
   const handleSearch = () => {
-    onSearch({
-      location,
-      rooms,
-      adults,
-      children,
-      startDate: dateRange.startDate,
-      endDate: dateRange.endDate,
-    });
+    if (dateRange.startDate && dateRange.endDate) {
+      onSearch({
+        location,
+        rooms,
+        adults,
+        children,
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+      });
+    }
   };
 
   const guestSummary = `${rooms} Room(s) - ${adults + children} Guest(s)`;
