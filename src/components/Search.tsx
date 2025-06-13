@@ -97,7 +97,14 @@ export default function Search({ onSearch }: SearchProps) {
             ranges={[dateRange]}
             onChange={(item) => {
               if (item.selection) {
-                setDateRange(item.selection);
+                const { startDate, endDate } = item.selection;
+                if (startDate && endDate) {
+                  setDateRange({
+                    startDate,
+                    endDate,
+                    key: 'selection',
+                  });
+                }
               }
             }}
             months={1}
